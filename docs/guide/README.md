@@ -1,6 +1,6 @@
 # 指南
 
-## 介绍
+## 背景
 
 脚手架通常是为了解决实际开发、生产遇到的 **重复** 且比较繁琐的工作而抽象出来的工具，假如我们的团队在工作中会遇到以下场景：
 
@@ -34,7 +34,7 @@
 :::warning 前提条件
 最好 Node.js >= 12
 :::
-下面将会帮助你从头创建一个项目。
+下面将会带你从零开始创建一个项目。
 
 1、全局安装 `lds-app-cli`
 
@@ -80,7 +80,7 @@ Commands:
   lds init web-app
 ```
 
-脚手架会在`c:\project`目录下自动创建一个`web-app`文件夹，并初始化项目配置，安装响应的依赖文件。如果安装依赖过程时间比较久，可以自行进入项目路径安装依赖。项目文件结构如下：
+脚手架会在`c:\project`目录下自动创建一个`web-app`文件夹，并初始化项目配置，安装相应的依赖文件。如果安装依赖过程时间比较久，可以中断程序，自行进入项目路径安装依赖。项目文件结构如下：
 
 <img src="/directory.png"  />
 
@@ -93,7 +93,7 @@ Commands:
 
 ### 1、创建工程
 
-开发者创建项目时，脚手架提供了`vue`、`ract`和普通项目三种模板供选择，每种模板使用。
+开发者创建项目时，脚手架提供了`vue`、`react`和普通项目三种模板供选择，开发者可根据项目类型创建一般项目或者分类项目。
 
 #### 创建一般项目
 
@@ -107,7 +107,9 @@ lds create mini-app
 脚手架会在`c:\project\web-app\src`下创建一个名称为`mini-app`的文件夹，并且初始化工程模板。
 
 - 选择工程模板（`Vue`、`React`、普通工程），这里我们选择`Vue`模板。
+
   <img src="/create_step1.png"  />
+
 - 设置标题，该标题将作为页面的标题。
 - 设置描述，将生成`<meta name="description" content="618，活动">`标签。
 
@@ -164,6 +166,7 @@ lds start example/mini-app
 ### 3、概览工程
 
 在项目已经运行成功的条件下，浏览器打开`http://localhost:3000`会展示开发成员列表：
+
 <img src="/start_step3.png" />
 
 点击`张富贵`进入其所开发的项目列表页，方便查找项目。
@@ -210,13 +213,15 @@ module.exports = {
 };
 ```
 
-在`publishPath`设置`cdn`绝对路径即可。执行`lds build project_name`,以下是打包结果
+在`publishPath`设置`cdn`绝对路径即可。执行`lds build project_name`，以下是打包结果
 
 <img src="/build.jpeg" />
 
+`css`文件中资源路径也被替换成绝对路径了。
+
 ## 配置文件
 
-所有初始化的工程目录中`config.js`为工程的配置文件，`index.js`为入口文件，
+所有初始化的工程目录中`config.js`为工程的配置文件，`index.js`为入口文件，以下就是`config.js`的配置参数，
 
 ```js
 // config.js
@@ -249,17 +254,17 @@ module.exports = {
 };
 ```
 
-以上就是`config.js`的配置参数，通过对`proxy`的设置，在普通`jquery`项目中，我们就可以方便的使用`get`、`post`请求了。在后期的版本中会增加`host`、`https`设置，满足更多的开发需求。
+通过对`proxy`的设置，在普通`jquery`项目中，我们就可以方便的使用`get`、`post`请求了。在后期的版本中会增加`host`、`https`设置，满足更多的开发需求。
 
 :::warning 注意 ⚠️
-`config.js`文件是工程配置文件入口，不可修改文件类型和文件名后缀。
+`config.js`文件是工程配置文件入口，不可修改文件类型和文件名后缀，否则项目启动和打包过程会出现异常。
 :::
 
 ## vue 模板
 
 在前端全面拥抱`typescript`的时代，`cli`创建的`vue`模版默认使用了`vue3 + typescript`，开发者也可以根据自己的习惯将`typescript`改为`js`。
 
-### 创建 vue-router
+### 使用 vue-router
 
 脚手架目前只支持`hash`路由，所以这里我们以`createWebHashHistory`创建路由。
 
@@ -291,7 +296,7 @@ const router = createRouter({
 export default router;
 ```
 
-### 创建 vuex
+### 使用 vuex
 
 ```js
 // store/index.js
@@ -577,3 +582,25 @@ export default {
   <img src="/layout_result.png" />
 
 ### .html 文件中引用静态资源
+
+在`html`文件中常常会引入`video`、`img`、`aduio`等静态资源，为此脚手架使用[`html-widthsource-loader`](https://www.npmjs.com/package/html-widthsource-loader)处理`html`在开发、打包过程中出现的路径问题。
+所以在该脚手架创建的**普通模版**工程中直接使用**相对路径**引用即可，使用绝对路径的资源当然是最好不过了。
+
+## 常见问题
+
+### 热更新不生效？
+
+在`vue`、`react`中，如果热更新不生效，请先尝试刷新以下页面，如果问题仍没有解决，请根据浏览器控制台日志输出，参考[模块热替换(hot module replacement)
+查](https://www.webpackjs.com/api/hot-module-replacement/)配置依赖文件。
+
+### 如何更新脚手架？
+
+```sh
+lds up upgrade
+```
+
+以上命令会自动更新脚手架至最新版本。
+
+### 如何提出建议？
+
+如果您在使用`lds-app-cli`过程中发现`bug`或想提交建议，请在[项目 issues](https://github.com/224137748/lds-app-cli/issues)中留言！
