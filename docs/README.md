@@ -3,7 +3,7 @@ home: true
 heroImage: /logo.png
 # heroText: Hero 标题
 tagline: 基于webpack构建Vue，React项目的脚手架工具
-actionText: Start →
+actionText: Start1 →
 actionLink: /guide/
 features:
   - title: 功能
