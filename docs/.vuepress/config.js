@@ -1,5 +1,5 @@
 module.exports = {
-  title: "lds-app-cli",
+  title: "lds-app-cli脚手架",
   description: "前端脚手架,多页面应用",
   dest: "./dist",
   themeConfig: {
@@ -16,5 +16,25 @@ module.exports = {
       ],
     ],
     sidebar: "auto",
+    nav: [
+      {
+        text: "首页",
+        link: "/"
+      },
+      {
+        text: "文档",
+        link: "/guide/"
+      },
+      {
+        text: "Github",
+        link: 'https://github.com/224137748/lds-app-cli'
+      }
+      // {
+      //   text: "文档"
+      // },
+      // {
+      //   text: "other"
+      // }
+    ],
   },
 };

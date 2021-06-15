@@ -533,9 +533,9 @@ export default {
 
 <img src="/layout.jpg"  />
 
-在`home.index`和`detail.index`两个页面中，都有相同的`header`和`footer`，在`react`和`vue`中我们很容易的会想到以组件的形式来实现上面的布局，但是在`lds-app-cli`中我们怎么实现呢？
+在`home.index`和`detail.index`两个页面中，都有相同的`header`和`footer`，在`react`和`vue`中我们很容易的会想到以组件的形式来实现上面的布局，在普通项目中改如何实现呢？
 
-- 1、新建一个`layout`文件夹，然后在文件夹中创建一个`header.html`:
+- 1、先新建一个`layout`文件夹，然后在文件夹中创建一个`header.html`:
 
   ```html
   <!-- layout/header.html -->
